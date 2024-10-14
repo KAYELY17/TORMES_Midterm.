@@ -1,0 +1,85 @@
+class Person {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+    }
+}
+
+class Student extends Person {
+    private String studentID;
+    private String course;
+    private int units;
+    private final int feePerUnit = 1000;
+
+    public Student(String name, int age, String studentID, String course, int units) {
+        super(name, age);
+        this.studentID = studentID;
+        this.course = course;
+        this.units = units;
+    }
+
+    public double calculateFees() {
+        return units * feePerUnit;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Student ID: " + studentID);
+        System.out.println("Course: " + course);
+        System.out.println("Units: " + units);
+        System.out.println("Total Fee: " + calculateFees());
+    }
+}
+
+class Instructor extends Person {
+    private String employeeID;
+    private String department;
+    private double salary;
+
+    public Instructor(String name, int age, String employeeID, String department, double salary) {
+        super(name, age);
+        this.employeeID = employeeID;
+        this.department = department;
+        this.salary = salary;
+    }
+
+    @Override
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Employee ID: " + employeeID);
+        System.out.println("Department: " + department);
+        System.out.println("Salary: " + salary);
+    }
+}
+
+public class UniversityEnrollment {
+    public static void printDetails(Person p) {
+        p.displayInfo();
+    }
+
+    public static void main(String[] args) {
+        Student student1 = new Student("ASTREA LISHINE VELASQUEZ", 20, "ST128817", "BACHELOR OF SCIENCE IN COMPUTER ENGINEERING", 33);
+        Student student2 = new Student("LAILE L. VISTA", 21, "ST121118", "BACHELOR OF SCIENCE IN MEDICAL TECHNOLOGY", 37);
+     
+        Instructor instructor1 = new Instructor("ENGR.TYRON HELIX FERRER", 40, "ST83675", "COLLEGE ENGINERRING AND ARCHITECTURE",70000);
+        Instructor instructor2 = new Instructor("DR.VANESSA PARKER,",32, "ST32657" , "COLLEGE OF MEDICAL TECHNOLOGY",90000);
+
+        // Print details of all persons using polymorphism
+        printDetails(student1);
+        System.out.println("--------------------");
+        printDetails(student2);
+        System.out.println("--------------------");
+        printDetails(instructor1);
+        System.out.println("--------------------");
+        printDetails(instructor2);
+    }
+}
